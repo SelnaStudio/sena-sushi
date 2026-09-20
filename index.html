@@ -128,9 +128,10 @@
     transition:box-shadow .4s ease,padding .4s ease,border-color .4s ease;
   }
   header.nav.solid{box-shadow:0 1px 0 var(--line-dark),0 18px 40px -28px rgba(0,0,0,.6);padding-block:.6rem;border-color:var(--line-dark)}
-  .nav__logo{display:flex;align-items:center;gap:.6rem;color:var(--cream)}
-  .nav__logo img{width:30px;height:30px;object-fit:contain}
-  .nav__logo b{font-family:var(--ff-display);font-size:1.25rem;font-weight:700;letter-spacing:.03em}
+  .nav__logo{display:flex;align-items:center;gap:.65rem;color:var(--cream)}
+  .nav__logo img.nav__seal{width:30px;height:30px;object-fit:contain;flex:none}
+  .nav__logo img.nav__wordmark{height:18px;width:auto;display:block;transition:height .4s ease;filter:brightness(0) invert(1)}
+  header.nav.solid .nav__logo img.nav__wordmark{height:15px}
   .nav__links{display:none;gap:2rem;font-size:.88rem;font-weight:500;color:var(--cream)}
   .nav__links a{position:relative;padding-block:.3rem;opacity:.86;transition:opacity .3s ease}
   .nav__links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--accent-bright);transition:right .35s ease}
@@ -155,10 +156,34 @@
   .nav .btn--solid{padding:.6rem 1.15rem}
   .nav__cta-full{display:none}
 
+  .nav__burger{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    width:40px;height:40px;border:0;background:none;padding:0;margin:0;cursor:pointer;flex:none;
+  }
+  .nav__burger span{display:block;width:22px;height:2px;border-radius:2px;background:var(--cream);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .25s ease}
+  .nav__burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav__burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav__burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  .nav__drop{
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(28,24,21,.98);backdrop-filter:blur(10px);
+    display:grid;grid-template-rows:0fr;
+    border-top:1px solid transparent;
+    transition:grid-template-rows .4s cubic-bezier(.2,.7,.2,1),border-color .4s ease;
+  }
+  .nav__drop.open{grid-template-rows:1fr;border-color:var(--line-dark)}
+  .nav__drop__inner{overflow:hidden;display:flex;flex-direction:column;padding-inline:var(--pad)}
+  .nav__drop a:not(.btn){color:var(--cream);padding:.95rem 0;font-size:1.02rem;font-weight:500;
+    border-bottom:1px solid var(--line-dark);opacity:.88;transition:opacity .25s ease}
+  .nav__drop a:not(.btn):hover{opacity:1}
+  .nav__drop .btn{margin:1.2rem 0 1.5rem;justify-content:center}
+
   /* ---------- hero ---------- */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding-block:clamp(6.5rem,17vw,8.5rem) clamp(3.5rem,8vw,6rem);isolation:isolate}
-  .hero__bg{position:absolute;inset:-10% 0;z-index:-3}
-  .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+  .hero__bg{position:absolute;inset:-10% -3%;z-index:-3}
+  .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:blur(3px) saturate(1.05)}
   .hero__bg::after{content:"";position:absolute;inset:0;background:
      linear-gradient(180deg,rgba(18,15,13,.72) 0%,rgba(18,15,13,.22) 32%,rgba(18,15,13,.5) 62%,rgba(18,15,13,.94) 100%)}
   .hero__inner{position:relative;color:var(--cream);max-width:40rem}
@@ -284,6 +309,7 @@
   @media (min-width:900px){
     .nav__links{display:flex}
     .nav__cta-full{display:inline-flex}
+    .nav__burger,.nav__drop{display:none}
     .exp__grid{grid-template-columns:1.05fr .95fr;align-items:center}
     .exp__grid .exp__media{order:2}
     .ubi__grid{grid-template-columns:1fr 1fr}
@@ -302,8 +328,8 @@
 
 <header class="nav" id="nav">
   <a href="#top" class="nav__logo" aria-label="SENA Sushi &amp; Cocina Japonesa — inicio">
-    <img src="assets/seal-icon.webp" alt="" width="32" height="32">
-    <b>SENA</b>
+    <img class="nav__seal" src="assets/seal-icon.webp" alt="" width="32" height="32">
+    <img class="nav__wordmark" src="assets/wordmark.webp" alt="SENA" width="427" height="177">
   </a>
   <nav class="nav__links" aria-label="Principal">
     <a href="#menu">Menú</a>
@@ -314,17 +340,31 @@
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
     Reservar
   </a>
+  <button class="nav__burger" id="navBurger" type="button" aria-expanded="false" aria-controls="navDrop" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav__drop" id="navDrop">
+    <div class="nav__drop__inner">
+      <a href="#menu">Menú</a>
+      <a href="#experiencia">La experiencia</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a class="btn btn--solid" id="navDropCta" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+        Reservar por WhatsApp
+      </a>
+    </div>
+  </div>
 </header>
 
 <main id="top">
 
   <!-- 1 · HERO -->
   <section class="hero" id="hero">
-    <div class="hero__bg" data-par="0.16"><img src="assets/hero-chef.webp" alt="El chef de SENA sostiene un filete entero de salmón fresco frente a la barra, con botellas de whisky japonés detrás" width="1179" height="1544" fetchpriority="high"></div>
+    <div class="hero__bg" data-par="0.16"><img src="assets/hero-whole-fish.webp" alt="El chef de SENA prepara un pescado entero sobre la barra, con botellas de whisky japonés y abanicos detrás" width="1179" height="1556" fetchpriority="high"></div>
     <div class="wrap hero__inner">
       <p class="eyebrow eyebrow--light">Cocina japonesa · Omakase · Plaza Kentro</p>
       <h1>Usted se sienta.<br>El chef <em>decide</em>.</h1>
-      <p class="hero__sub">SENA es una barra pequeña — cinco mesas y el mostrador — donde el pescado se corta frente a usted y cada plato llega explicado, no solo servido. Cocina japonesa original, sin fusiones de moda, para quien prefiere una noche tranquila a un menú de cien fotos.</p>
+      <p class="hero__sub">SENA es una barra pequeña — cinco mesas y el mostrador — donde el pescado se corta frente a usted y cada plato llega explicado, no solo servido.</p>
       <div class="hero__actions">
         <a class="btn btn--solid" id="heroWa" href="#" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
@@ -346,7 +386,7 @@
       </div>
       <img class="sig__stamp" src="assets/seal-icon.webp" alt="" width="104" height="104" loading="lazy">
       <p class="sig__kanji">御任せ</p>
-      <p class="sig__q">Omakase. En japonés significa <em>“se lo dejo a usted”</em>. En esta barra es al revés: ustedes se sientan y se lo dejan al chef.</p>
+      <p class="sig__q">Omakase. En japonés significa <em>“se lo dejo a usted”</em>.</p>
     </div>
   </section>
 
@@ -496,7 +536,7 @@
   // WhatsApp links
   var msg = encodeURIComponent('Hola, me gustaría reservar una mesa en SENA 🍣');
   var wa = 'https://wa.me/522222618817?text=' + msg;
-  ['navCta','heroWa','cierreWa','waFloat'].forEach(function(id){
+  ['navCta','navDropCta','heroWa','cierreWa','waFloat'].forEach(function(id){
     var el = document.getElementById(id); if(el) el.href = wa;
   });
 
@@ -506,47 +546,46 @@
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
 
-  // Reveal
-  var revealEls = [].slice.call(document.querySelectorAll('.r, .sig'));
-  var reveal = function(el){ el.classList.add('in'); };
+  // Mobile dropdown menu
+  var burger = document.getElementById('navBurger');
+  var drop = document.getElementById('navDrop');
+  var closeDrop = function(){ burger.setAttribute('aria-expanded','false'); drop.classList.remove('open'); };
+  var openDrop = function(){ burger.setAttribute('aria-expanded','true'); drop.classList.add('open'); };
+  burger.addEventListener('click', function(){
+    (burger.getAttribute('aria-expanded') === 'true') ? closeDrop() : openDrop();
+  });
+  [].slice.call(drop.querySelectorAll('a')).forEach(function(a){ a.addEventListener('click', closeDrop); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeDrop(); });
+  window.addEventListener('resize', function(){ if(window.innerWidth >= 900) closeDrop(); });
+
+  // Reveal — se repite cada vez que el elemento entra o sale de pantalla
+  var revealEls = [].slice.call(document.querySelectorAll('.r'));
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); }
-      });
+      entries.forEach(function(e){ e.target.classList.toggle('in', e.isIntersecting); });
     }, {threshold:0.14, rootMargin:'0px 0px -6% 0px'});
     revealEls.forEach(function(el){ io.observe(el); });
-    var sweep = function(){
-      revealEls.forEach(function(el){
-        if(el.classList.contains('in')) return;
-        var r = el.getBoundingClientRect();
-        if(r.top < innerHeight * 0.94 && r.bottom > 0){ reveal(el); io.unobserve(el); }
-      });
-    };
-    window.addEventListener('scroll', sweep, {passive:true});
-    window.addEventListener('load', sweep);
-    setTimeout(sweep, 600);
-    setTimeout(function(){ revealEls.forEach(reveal); }, 4000);
   } else {
-    revealEls.forEach(reveal);
+    revealEls.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // Count-up
+  // Count-up — se reinicia cada vez que vuelve a entrar en pantalla
   var cio = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      cio.unobserve(e.target);
-      var el = e.target, target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec||'0',10);
+      var el = e.target;
+      if(!e.isIntersecting || el.dataset.animating === '1') return;
+      var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec||'0',10);
       if(RM){ el.textContent = fmt(target,dec); return; }
+      el.dataset.animating = '1';
+      el.textContent = fmt(0, dec);
       var t0 = null, dur = 1300;
       function step(ts){
         if(!t0) t0 = ts;
         var p = Math.min((ts-t0)/dur,1), eased = 1-Math.pow(1-p,3);
         el.textContent = fmt(target*eased, dec);
-        if(p<1) requestAnimationFrame(step);
+        if(p<1) requestAnimationFrame(step); else el.dataset.animating = '';
       }
       requestAnimationFrame(step);
-      setTimeout(function(){ el.textContent = fmt(target,dec); }, dur + 400);
     });
   }, {threshold:0.6});
   function fmt(n,dec){
@@ -575,13 +614,11 @@
     run();
   }
 
-  // Signature: reveal (blade + stamp + quote) when it enters view
+  // Signature: blade + stamp + quote — se repite cada vez que entra o sale de pantalla
   var sig = document.getElementById('sig');
   if('IntersectionObserver' in window){
     var sio = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(e.isIntersecting){ sig.classList.add('in'); sio.disconnect(); }
-      });
+      es.forEach(function(e){ sig.classList.toggle('in', e.isIntersecting); });
     }, {threshold:0.3});
     sio.observe(sig);
   } else { sig.classList.add('in'); }

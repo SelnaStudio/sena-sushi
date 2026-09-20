@@ -227,7 +227,7 @@
   }
 
   /* ---------- menu ---------- */
-  .menu{padding:clamp(3.5rem,9vw,7rem) 0 clamp(4.5rem,11vw,7.5rem);background:var(--paper-deep)}
+  .menu{padding:clamp(3.5rem,9vw,7rem) 0;background:var(--paper-deep)}
   .sec-head{display:grid;gap:1rem;margin-bottom:clamp(2.2rem,5vw,3.5rem)}
   .sec-head h2{font-size:clamp(2.1rem,6vw,3.6rem)}
   .sec-head p{max-width:44ch;color:rgba(28,24,21,.72)}
@@ -241,7 +241,6 @@
   .menu__label{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:1.3rem 1.4rem;color:var(--cream)}
   .menu__label h3{font-size:1.35rem;margin-bottom:.35rem}
   .menu__label p{font-size:.86rem;color:rgba(250,246,238,.82);max-width:32ch}
-  .menu__note{margin-top:clamp(1.8rem,4vw,2.4rem);font-family:var(--ff-display);font-style:italic;font-size:clamp(1.05rem,2.2vw,1.25rem);color:rgba(28,24,21,.78);max-width:56ch}
 
   /* ---------- experiencia ---------- */
   .exp{background:var(--ink);color:var(--cream);padding:clamp(4rem,11vw,8rem) 0;position:relative;overflow:hidden}
@@ -269,7 +268,7 @@
   .infoline svg{width:1.2rem;height:1.2rem;flex:none;margin-top:.2rem;stroke:var(--accent);fill:none;stroke-width:1.6}
   .infoline b{font-family:var(--ff-text);font-weight:700;display:block;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:.25rem}
   .infoline .hrs{display:flex;justify-content:space-between;gap:1rem;max-width:22rem}
-  .ubi__card .btn{margin-top:1.6rem}
+  .ubi__actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
   .ubi__map{position:relative;border-radius:6px;overflow:hidden;min-height:320px;background:var(--paper-deep);border:1px solid var(--line-light)}
   .ubi__map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.25) contrast(1.02)}
 
@@ -287,8 +286,8 @@
   footer img{width:34px;margin:0 auto .9rem;opacity:.92}
   footer a{color:rgba(250,246,238,.82)}
 
-  /* ---------- floating WA ---------- */
-  .wa-float{
+  /* ---------- floating call button ---------- */
+  .call-float{
     position:fixed;right:1rem;bottom:1rem;z-index:70;
     display:flex;align-items:center;gap:.5rem;
     background:var(--accent);color:var(--cream);
@@ -296,14 +295,14 @@
     box-shadow:0 12px 30px -8px rgba(18,15,13,.6);transform:translateY(0);
     transition:transform .35s cubic-bezier(.2,.7,.2,1),background .25s ease;
   }
-  .wa-float svg{width:1.3rem;height:1.3rem}
-  .wa-float:hover{background:var(--accent-deep)}
-  .wa-float span{display:none}
-  .wa-float.hidden{transform:translateY(150%)}
+  .call-float svg{width:1.3rem;height:1.3rem}
+  .call-float:hover{background:var(--accent-deep)}
+  .call-float span{display:none}
+  .call-float.hidden{transform:translateY(150%)}
 
   /* ---------- tablet / desktop ---------- */
   @media (min-width:600px){
-    .wa-float span{display:inline}
+    .call-float span{display:inline}
     .menu__grid{grid-template-columns:1fr 1fr}
   }
   @media (min-width:900px){
@@ -336,9 +335,9 @@
     <a href="#experiencia">La experiencia</a>
     <a href="#ubicacion">Ubicación</a>
   </nav>
-  <a class="btn btn--solid nav__cta-full" id="navCta" href="#" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
-    Reservar
+  <a class="btn btn--solid nav__cta-full" id="navCta" href="tel:+522222618817">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+    Llamar
   </a>
   <button class="nav__burger" id="navBurger" type="button" aria-expanded="false" aria-controls="navDrop" aria-label="Abrir menú">
     <span></span><span></span><span></span>
@@ -348,9 +347,9 @@
       <a href="#menu">Menú</a>
       <a href="#experiencia">La experiencia</a>
       <a href="#ubicacion">Ubicación</a>
-      <a class="btn btn--solid" id="navDropCta" href="#" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
-        Reservar por WhatsApp
+      <a class="btn btn--solid" id="navDropCta" href="tel:+522222618817">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+        Llamar para reservar
       </a>
     </div>
   </div>
@@ -366,9 +365,9 @@
       <h1>Usted se sienta.<br>El chef <em>decide</em>.</h1>
       <p class="hero__sub">SENA es una barra pequeña — cinco mesas y el mostrador — donde el pescado se corta frente a usted y cada plato llega explicado, no solo servido.</p>
       <div class="hero__actions">
-        <a class="btn btn--solid" id="heroWa" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
-          Reservar por WhatsApp
+        <a class="btn btn--solid" id="heroCta" href="tel:+522222618817">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+          Llamar ahora
         </a>
         <a class="btn btn--ghost on-dark" href="#menu">Ver el menú</a>
       </div>
@@ -396,9 +395,9 @@
       <div class="sec-head r">
         <div>
           <p class="eyebrow">Lo que sale de la barra</p>
-          <h2>El menú cambia<br>con la pesca del día.</h2>
+          <h2>Una experiencia<br>auténtica en cada plato.</h2>
         </div>
-        <p>Estas son las categorías fijas — lo que se sirve dentro de cada una depende de lo que llegó fresco esa mañana.</p>
+        <p>Ingredientes frescos, técnica japonesa y el cuidado de un chef que corta cada pieza frente a usted.</p>
       </div>
 
       <div class="menu__grid">
@@ -431,7 +430,6 @@
           </div>
         </div>
       </div>
-      <p class="menu__note r">También hay salmón servido entero en la mesa, cuando la pieza del día lo permite.</p>
     </div>
   </section>
 
@@ -480,9 +478,12 @@
         </div>
         <div class="infoline">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 18v2a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-3Z"/></svg>
-          <div><b>Reservaciones</b>El lugar es chico — mejor avisen antes de venir.<br><a href="tel:+522222618817">222 261 8817</a></div>
+          <div><b>Reservaciones</b>Llámanos y reserva.<br><a href="tel:+522222618817">222 261 8817</a></div>
         </div>
-        <a class="btn btn--solid" href="https://maps.app.goo.gl/w9SfGeGyov57Jyvs8" target="_blank" rel="noopener">Cómo llegar</a>
+        <div class="ubi__actions">
+          <a class="btn btn--solid" href="https://maps.app.goo.gl/w9SfGeGyov57Jyvs8" target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="btn btn--ghost on-light" href="tel:+522222618817">Reservaciones</a>
+        </div>
       </div>
       <div class="ubi__map r" style="--d:.1s">
         <iframe src="https://www.google.com/maps?q=Sena%20Sushi%20%26%20Cocina%20Japonesa%2C%20Atlixc%C3%A1yotl%203432%2C%20Plaza%20Kentro%2C%20Puebla&z=16&output=embed" title="Mapa de ubicación de SENA en Plaza Kentro, Puebla" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -495,12 +496,12 @@
     <img class="cierre__mark" src="assets/seal-icon.webp" alt="" aria-hidden="true" width="260" height="261">
     <div class="wrap">
       <p class="eyebrow eyebrow--light r">Reservaciones</p>
-      <h2 class="r" style="--d:.05s">Resérvenle su lugar<br>a la barra.</h2>
-      <p class="r" style="--d:.1s">Son cinco mesas y un mostrador — entre semana suele haber lugar, el fin de semana conviene avisar antes. Escriban por WhatsApp y les confirmamos el mismo día.</p>
+      <h2 class="r" style="--d:.05s">Asegura tu lugar<br>en la barra.</h2>
+      <p class="r" style="--d:.1s">Llámanos y vive esta gran experiencia de auténtica comida japonesa.</p>
       <div class="cierre__actions r" style="--d:.16s">
-        <a class="btn btn--solid" id="cierreWa" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
-          Reservar por WhatsApp
+        <a class="btn btn--solid" id="cierreCta" href="tel:+522222618817">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+          Llamar ahora
         </a>
         <a class="btn btn--ghost on-dark" href="#ubicacion">Ver ubicación</a>
       </div>
@@ -518,9 +519,9 @@
   <a href="https://www.instagram.com/sena.restaurante" target="_blank" rel="noopener">@sena.restaurante</a> · <a href="https://maps.app.goo.gl/w9SfGeGyov57Jyvs8" target="_blank" rel="noopener">Google Maps</a></p>
 </footer>
 
-<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
-  <span>Reservar</span>
+<a class="call-float" id="callFloat" href="tel:+522222618817" aria-label="Llamar para reservar">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+  <span>Llamar</span>
 </a>
 
 <script>
@@ -532,13 +533,6 @@
     window.scrollTo(0, 0);
     window.addEventListener('load', function(){ if(!location.hash) window.scrollTo(0, 0); });
   }
-
-  // WhatsApp links
-  var msg = encodeURIComponent('Hola, me gustaría reservar una mesa en SENA 🍣');
-  var wa = 'https://wa.me/522222618817?text=' + msg;
-  ['navCta','navDropCta','heroWa','cierreWa','waFloat'].forEach(function(id){
-    var el = document.getElementById(id); if(el) el.href = wa;
-  });
 
   // Nav shadow on scroll
   var nav = document.getElementById('nav');
@@ -623,10 +617,10 @@
     sio.observe(sig);
   } else { sig.classList.add('in'); }
 
-  // Hide floating WA when footer visible
-  var waFloat = document.getElementById('waFloat');
+  // Hide floating call button when footer visible
+  var callFloat = document.getElementById('callFloat');
   var fio = new IntersectionObserver(function(es){
-    es.forEach(function(e){ waFloat.classList.toggle('hidden', e.isIntersecting); });
+    es.forEach(function(e){ callFloat.classList.toggle('hidden', e.isIntersecting); });
   }, {threshold:0.1});
   fio.observe(document.querySelector('footer'));
 })();

@@ -153,8 +153,10 @@
   .btn--ghost.on-dark:hover{background:var(--cream);color:var(--ink)}
   .btn--ghost.on-light{color:var(--ink)}
   .btn--ghost.on-light:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
-  .nav .btn--solid{padding:.6rem 1.15rem}
-  .nav__cta-full{display:none}
+  .btn--outline-accent{border-color:var(--accent);color:var(--accent)}
+  .btn--outline-accent:hover{background:var(--accent);color:var(--cream)}
+  .nav .btn{padding:.6rem 1.15rem}
+  .nav__ctas{display:none}
 
   .nav__burger{
     display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
@@ -178,7 +180,8 @@
   .nav__drop a:not(.btn){color:var(--cream);padding:.95rem 0;font-size:1.02rem;font-weight:500;
     border-bottom:1px solid var(--line-dark);opacity:.88;transition:opacity .25s ease}
   .nav__drop a:not(.btn):hover{opacity:1}
-  .nav__drop .btn{margin:1.2rem 0 1.5rem;justify-content:center}
+  .nav__drop__actions{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0 1.5rem}
+  .nav__drop .btn{justify-content:center}
 
   /* ---------- hero ---------- */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding-block:clamp(6.5rem,17vw,8.5rem) clamp(3.5rem,8vw,6rem);isolation:isolate}
@@ -286,19 +289,23 @@
   footer img{width:34px;margin:0 auto .9rem;opacity:.92}
   footer a{color:rgba(250,246,238,.82)}
 
-  /* ---------- floating call button ---------- */
-  .call-float{
+  /* ---------- floating buttons ---------- */
+  .float-group{
     position:fixed;right:1rem;bottom:1rem;z-index:70;
+    display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;
+    transform:translateY(0);transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .float-group.hidden{transform:translateY(150%)}
+  .call-float{
     display:flex;align-items:center;gap:.5rem;
     background:var(--accent);color:var(--cream);
     padding:.8rem 1rem;border-radius:999px;font-weight:600;font-size:.9rem;
-    box-shadow:0 12px 30px -8px rgba(18,15,13,.6);transform:translateY(0);
-    transition:transform .35s cubic-bezier(.2,.7,.2,1),background .25s ease;
+    box-shadow:0 12px 30px -8px rgba(18,15,13,.6);
+    transition:background .25s ease;
   }
   .call-float svg{width:1.3rem;height:1.3rem}
   .call-float:hover{background:var(--accent-deep)}
   .call-float span{display:none}
-  .call-float.hidden{transform:translateY(150%)}
 
   /* ---------- tablet / desktop ---------- */
   @media (min-width:600px){
@@ -307,7 +314,7 @@
   }
   @media (min-width:900px){
     .nav__links{display:flex}
-    .nav__cta-full{display:inline-flex}
+    .nav__ctas{display:flex;align-items:center;gap:.6rem}
     .nav__burger,.nav__drop{display:none}
     .exp__grid{grid-template-columns:1.05fr .95fr;align-items:center}
     .exp__grid .exp__media{order:2}
@@ -335,10 +342,16 @@
     <a href="#experiencia">La experiencia</a>
     <a href="#ubicacion">Ubicación</a>
   </nav>
-  <a class="btn btn--solid nav__cta-full" id="navCta" href="tel:+522222618817">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
-    Llamar
-  </a>
+  <div class="nav__ctas">
+    <a class="btn btn--outline-accent" id="navCta" href="tel:+522222618817">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+      Llamar
+    </a>
+    <a class="btn btn--solid" id="navWa" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
   <button class="nav__burger" id="navBurger" type="button" aria-expanded="false" aria-controls="navDrop" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
@@ -347,10 +360,16 @@
       <a href="#menu">Menú</a>
       <a href="#experiencia">La experiencia</a>
       <a href="#ubicacion">Ubicación</a>
-      <a class="btn btn--solid" id="navDropCta" href="tel:+522222618817">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
-        Llamar para reservar
-      </a>
+      <div class="nav__drop__actions">
+        <a class="btn btn--solid" id="navDropWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn--outline-accent" id="navDropCta" href="tel:+522222618817">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+          Llamar para reservar
+        </a>
+      </div>
     </div>
   </div>
 </header>
@@ -368,6 +387,10 @@
         <a class="btn btn--solid" id="heroCta" href="tel:+522222618817">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
           Llamar ahora
+        </a>
+        <a class="btn btn--outline-accent" id="heroWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+          WhatsApp
         </a>
         <a class="btn btn--ghost on-dark" href="#menu">Ver el menú</a>
       </div>
@@ -478,11 +501,15 @@
         </div>
         <div class="infoline">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 18v2a2 2 0 0 1-2 2A16 16 0 0 1 3 7a2 2 0 0 1 2-3Z"/></svg>
-          <div><b>Reservaciones</b>Llámanos y reserva.<br><a href="tel:+522222618817">222 261 8817</a></div>
+          <div><b>Reservaciones</b>Llámanos o escríbenos por WhatsApp.<br><a href="tel:+522222618817">222 261 8817</a></div>
         </div>
         <div class="ubi__actions">
           <a class="btn btn--solid" href="https://maps.app.goo.gl/w9SfGeGyov57Jyvs8" target="_blank" rel="noopener">Cómo llegar</a>
-          <a class="btn btn--ghost on-light" href="tel:+522222618817">Reservaciones</a>
+          <a class="btn btn--outline-accent" id="ubiWa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+            WhatsApp
+          </a>
+          <a class="btn btn--ghost on-light" href="tel:+522222618817">Llamar</a>
         </div>
       </div>
       <div class="ubi__map r" style="--d:.1s">
@@ -497,11 +524,15 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--light r">Reservaciones</p>
       <h2 class="r" style="--d:.05s">Asegura tu lugar<br>en la barra.</h2>
-      <p class="r" style="--d:.1s">Llámanos y vive esta gran experiencia de auténtica comida japonesa.</p>
+      <p class="r" style="--d:.1s">Llámanos o escríbenos por WhatsApp y vive esta gran experiencia de auténtica comida japonesa.</p>
       <div class="cierre__actions r" style="--d:.16s">
         <a class="btn btn--solid" id="cierreCta" href="tel:+522222618817">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
           Llamar ahora
+        </a>
+        <a class="btn btn--outline-accent" id="cierreWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+          WhatsApp
         </a>
         <a class="btn btn--ghost on-dark" href="#ubicacion">Ver ubicación</a>
       </div>
@@ -519,10 +550,16 @@
   <a href="https://www.instagram.com/sena.restaurante" target="_blank" rel="noopener">@sena.restaurante</a> · <a href="https://maps.app.goo.gl/w9SfGeGyov57Jyvs8" target="_blank" rel="noopener">Google Maps</a></p>
 </footer>
 
-<a class="call-float" id="callFloat" href="tel:+522222618817" aria-label="Llamar para reservar">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
-  <span>Llamar</span>
-</a>
+<div class="float-group" id="floatGroup">
+  <a class="call-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-5-4.4-5.1-4.6-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.5.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1l1.9.9c.3.2.5.2.6.4.1.1.1.7-.1 1.4Z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+  <a class="call-float" id="callFloat" href="tel:+522222618817" aria-label="Llamar para reservar">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.7 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>
+    <span>Llamar</span>
+  </a>
+</div>
 
 <script>
 (function(){
@@ -533,6 +570,13 @@
     window.scrollTo(0, 0);
     window.addEventListener('load', function(){ if(!location.hash) window.scrollTo(0, 0); });
   }
+
+  // WhatsApp links
+  var waMsg = encodeURIComponent('Hola, me gustaría reservar una mesa en SENA 🍣');
+  var waHref = 'https://wa.me/522221592259?text=' + waMsg;
+  ['navWa','navDropWa','heroWa','ubiWa','cierreWa','waFloat'].forEach(function(id){
+    var el = document.getElementById(id); if(el) el.href = waHref;
+  });
 
   // Nav shadow on scroll
   var nav = document.getElementById('nav');
@@ -617,10 +661,10 @@
     sio.observe(sig);
   } else { sig.classList.add('in'); }
 
-  // Hide floating call button when footer visible
-  var callFloat = document.getElementById('callFloat');
+  // Hide floating buttons when footer visible
+  var floatGroup = document.getElementById('floatGroup');
   var fio = new IntersectionObserver(function(es){
-    es.forEach(function(e){ callFloat.classList.toggle('hidden', e.isIntersecting); });
+    es.forEach(function(e){ floatGroup.classList.toggle('hidden', e.isIntersecting); });
   }, {threshold:0.1});
   fio.observe(document.querySelector('footer'));
 })();
